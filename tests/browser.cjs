@@ -5,7 +5,7 @@ const fs=require('node:fs');
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH || '/usr/bin/chromium',args:['--no-sandbox']});
  const context=await browser.newContext({viewport:{width:1440,height:1000}});
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
- const base='http://127.0.0.1:8000/';
+ const base=process.env.TEST_BASE_URL || 'http://127.0.0.1:8000/';
  assert.ok(fs.readdirSync('.').filter(f=>f.endsWith('.html')).length>=10);
  const go=async p=>{await page.goto(base+p);await page.waitForSelector('footer .brand');};
  await go('catalogo.html');assert.equal(await page.locator('.card').count(),8);

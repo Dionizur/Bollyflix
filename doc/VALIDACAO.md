@@ -26,3 +26,7 @@ Capturas reais das 12 páginas em ambas as larguras estão em telas/. Dados de t
 - Bloqueado: busca real de trailers no YouTube, HTTP 403 do proxy de rede. Foram salvos somente atalhos de busca por filme; nenhum vídeo específico foi verificado ou baixado.
 - Não executado: file://, bloqueado pela política do navegador gerenciado.
 - Capturas em telas/ atualizadas para o visual simplificado. A documentação Word foi revisada para acompanhar a implementação.
+
+## Revisão de integrantes e textos
+
+Integrantes atualizados: Lian Braiam Mendes e Matheus Oliveira Alaminos. Matéria: Front-End para Web. Testes aprovados novamente nas 12 páginas em 1440/390 px após simplificar a apresentação e os textos. Capturas e documento Word atualizados. As limitações de YouTube e file:// permanecem.

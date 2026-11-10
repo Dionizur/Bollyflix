@@ -1,5 +1,8 @@
 # Bollyflix
 
+Integrantes: Lian Braiam Mendes e Matheus Oliveira Alaminos.
+Matéria: Front-End para Web.
+
 Projeto estudantil de catálogo de cinema indiano. HTML, CSS, JavaScript e Bootstrap 5.3.3 local. Não exige npm, build, API, senha ou internet para uso básico.
 
 ## Abrir
