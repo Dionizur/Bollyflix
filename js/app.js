@@ -1,6 +1,6 @@
 const PAGE = location.pathname.split('/').pop() || 'index.html';
 const main = document.getElementById('principal');
-const KEYS = ['profile','favorites','notes','theme','subscription','counter','messages'];
+const KEYS = ['profile','favorites','notes','theme','subscription','counter','messages','trailers'];
 let storageAvailable = true;
 const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 function read(key, fallback) {
@@ -41,8 +41,8 @@ function cards(films) {
     return films.map(f => `<article class="card"><a class="poster" href="filme.html?id=${f.id}" aria-label="Conhecer ${f.title}"><img src="img/${f.id}.svg" alt="Capa ilustrada de ${f.title}" loading="lazy"><span class="badge-genre">${f.genre}</span></a><div class="film-info"><div><h3><a href="filme.html?id=${f.id}">${f.title}</a></h3><div class="meta">${f.year} · ${f.duration} min · ${f.rating} anos</div></div><button class="heart" data-favorite="${f.id}" aria-label="${favorites.includes(f.id) ? 'Remover' : 'Adicionar'} ${f.title} ${favorites.includes(f.id) ? 'da' : 'à'} minha lista" aria-pressed="${favorites.includes(f.id)}">${favorites.includes(f.id) ? '♥' : '+'}</button></div><p class="description">${f.description}</p></article>`).join('');
 }
 function shell() {
-    document.body.classList.toggle('light', read('theme', 'dark') === 'light');
-    document.getElementById('cabecalho').innerHTML = `<div class="container navbar"><a class="brand" href="index.html">bolly<span>flix</span><span style="font-size:18px"> ✳</span></a><nav aria-label="Navegação principal">${[['index.html','Início'],['catalogo.html','Explorar filmes'],['favoritos.html','Minha lista'],['planos.html','Planos'],['midia.html','Sala de mídia']].map(([url,name]) => `<a href="${url}" ${PAGE === url ? 'aria-current="page"' : ''}>${name}</a>`).join('')}</nav><div class="nav-tools"><button class="theme" id="theme" aria-label="Alternar modo claro e escuro" title="Alternar modo">◐</button><a class="btn small" href="perfil.html">Meu perfil ›</a></div></div>`;
+    document.body.classList.toggle('light', read('theme', 'light') === 'light');
+    document.getElementById('cabecalho').innerHTML = `<div class="container navbar"><a class="brand" href="index.html">bolly<span>flix</span></a><nav aria-label="Navegação principal">${[['index.html','Início'],['catalogo.html','Explorar filmes'],['favoritos.html','Minha lista'],['planos.html','Planos'],['midia.html','Sala de mídia']].map(([url,name]) => `<a href="${url}" ${PAGE === url ? 'aria-current="page"' : ''}>${name}</a>`).join('')}</nav><div class="nav-tools"><button class="theme" id="theme" aria-label="Alternar modo claro e escuro" title="Alternar modo">◐</button><a class="btn small" href="perfil.html">Meu perfil ›</a></div></div>`;
     document.getElementById('rodape').innerHTML = `<div class="container"><div class="footer-top"><div><a class="brand" href="index.html">bolly<span>flix</span></a><p class="muted">Grandes histórias. Novos olhares.</p></div><nav class="footer-links" aria-label="Links do rodapé"><a href="sobre.html">Sobre</a><a href="notas.html">Diário de cinema</a><a href="contato.html">Contato</a><a href="ajuda.html">Ajuda</a><a href="privacidade.html">Privacidade</a><a href="https://www.nfai.gov.in/" target="_blank" rel="noopener noreferrer">Arquivo de cinema indiano ›</a></nav></div><div class="fine">© 2026 Bollyflix · Projeto acadêmico independente. Assinaturas simuladas, sem cobrança ou exibição dos filmes. Capas ilustradas autorais.</div></div>`;
     document.getElementById('theme').addEventListener('click', () => {
         const theme = document.body.classList.contains('light') ? 'dark' : 'light';
@@ -50,7 +50,7 @@ function shell() {
     });
 }
 function home() {
-    main.innerHTML = `<section class="hero"><div><div class="page-kicker">MUITO ALÉM DE UMA HISTÓRIA</div><h1>Um novo olhar.<br>Mil formas de<br><em>sentir cinema.</em></h1><p>Descubra a força, a cor e a emoção do cinema indiano. Encontre sua próxima grande história no Bollyflix.</p><div class="actions"><a class="btn" href="catalogo.html">Explorar o catálogo ›</a><a class="btn secondary" href="planos.html">Conhecer os planos</a></div><div class="stats"><div><strong>8</strong>histórias selecionadas</div><div><strong>5</strong>gêneros para explorar</div><div><strong>100%</strong>paixão por cinema</div></div></div><div class="hero-art"><img src="img/dangal.svg" alt="Capa ilustrada do filme Dangal"><img src="img/queen.svg" alt="Capa ilustrada do filme Queen"><span class="hero-caption">HISTÓRIAS QUE FICAM COM VOCÊ</span></div></section><section><div class="section-head"><div><div class="page-kicker">SUA PRÓXIMA DESCOBERTA</div><h2>Uma seleção para se apaixonar</h2></div><a href="catalogo.html">Ver todos ›</a></div><div class="grid">${cards(FILMS.slice(0,4))}</div></section><section class="band"><div><div class="page-kicker">SEU CINEMA, DO SEU JEITO</div><h2>Colecione histórias. Compartilhe emoções.</h2><p>Salve seus favoritos e registre cada descoberta no seu diário.</p></div><a class="btn" href="notas.html">Abrir meu diário ›</a></section>`;
+    main.innerHTML = `<section class="intro"><h1>Bollyflix: catálogo de filmes</h1><p>Projeto acadêmico sobre cinema indiano. Consulte sinopses, salve filmes na sua lista e escreva anotações.</p><div class="actions"><a class="btn" href="catalogo.html">Explorar o catálogo</a><a class="btn secondary" href="planos.html">Ver planos simulados</a></div></section><section><div class="section-head"><h2>Filmes em destaque</h2><a href="catalogo.html">Ver todos</a></div><div class="grid">${cards(FILMS.slice(0,4))}</div></section><section class="panel home-info"><h2>Como usar o projeto</h2><p>Use o catálogo para encontrar filmes. Em cada filme, você pode adicionar um favorito, acessar a busca de trailers no YouTube e salvar o link de uma prévia. Os registros ficam neste navegador.</p><a href="notas.html">Abrir meu diário</a> · <a href="sobre.html">Sobre o trabalho</a></section>`;
 }
 function catalog() {
     main.innerHTML = heading('ENCONTRE SUA HISTÓRIA','Explore o cinema indiano','Das grandes aventuras aos pequenos encontros. Escolha por onde começar.') + `<form class="filters" id="filters"><label>Buscar filme<input type="search" id="search" placeholder="Título ou descrição"></label><label>Gênero<select id="genre"><option value="">Todos os gêneros</option>${[...new Set(FILMS.map(f=>f.genre))].map(g=>`<option>${g}</option>`).join('')}</select></label><label>Ordenar por<select id="sort"><option value="selection">Nossa seleção</option><option value="title">Título A–Z</option><option value="year">Mais recentes</option></select></label></form><p id="result-count" class="muted" aria-live="polite"></p><div class="grid" id="results"></div>`;
@@ -68,6 +68,66 @@ function catalog() {
     document.getElementById('filters').addEventListener('input', update);
     update();
 }
+function youtubeId(value) {
+    try {
+        const url = new URL(value);
+        if (url.protocol !== 'https:') return null;
+        const host = url.hostname.toLowerCase();
+        let id = null;
+        if (host === 'youtu.be') id = url.pathname.slice(1);
+        else if (['youtube.com', 'www.youtube.com', 'm.youtube.com'].includes(host)) {
+            if (url.pathname === '/watch') id = url.searchParams.get('v');
+            else if (/^\/(embed|shorts)\//.test(url.pathname)) id = url.pathname.split('/')[2];
+        }
+        return /^[A-Za-z0-9_-]{11}$/.test(id || '') ? id : null;
+    } catch (error) { return null; }
+}
+function savedTrailers() {
+    const saved = read('trailers', {});
+    return saved && typeof saved === 'object' && !Array.isArray(saved) ? saved : {};
+}
+function trailerSection(film) {
+    const saved = savedTrailers()[film.id];
+    const id = typeof saved === 'string' ? youtubeId(saved) : null;
+    return `<section class="panel" id="previa"><h2>Prévia de ${film.title}</h2><p>Procure o trailer no canal do estúdio ou distribuidor. Depois, copie o link do vídeo para salvar nesta página.</p><a class="btn secondary" href="${film.trailerSearch}" target="_blank" rel="noopener noreferrer">Buscar trailer no YouTube</a><form id="trailer-form" class="trailer-form"><label for="trailer-url">Link do vídeo no YouTube</label><input id="trailer-url" type="url" required placeholder="https://www.youtube.com/watch?v=..." value="${id ? esc(saved) : ''}"><div class="actions"><button type="submit" class="btn">Salvar prévia</button>${id ? '<button type="button" class="btn secondary" id="remove-trailer">Remover prévia</button>' : ''}</div></form><p class="status" id="trailer-status" role="status">${id ? 'Link salvo neste navegador.' : 'Nenhuma prévia salva. A busca é um atalho; nenhum vídeo foi verificado automaticamente.'}</p>${id ? `<button class="btn secondary" type="button" id="play-trailer">Carregar prévia do YouTube</button><div id="trailer-player"></div><p><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener noreferrer">Abrir vídeo no YouTube</a></p>` : ''}<p class="muted">O link fica salvo, mas o vídeo não é baixado. A reprodução exige internet e pode estar indisponível por região ou por decisão do canal.</p></section>`;
+}
+function bindTrailer(film) {
+    document.getElementById('trailer-form').addEventListener('submit', event => {
+        event.preventDefault();
+        const input = document.getElementById('trailer-url');
+        const id = youtubeId(input.value.trim());
+        if (!id) {
+            input.setCustomValidity('Use o link HTTPS de um vídeo válido do YouTube.');
+            input.reportValidity();
+            return;
+        }
+        if (write('trailers', {...savedTrailers(), [film.id]: 'https://www.youtube.com/watch?v=' + id})) {
+            detail();
+            document.getElementById('previa').scrollIntoView();
+            notify('Link da prévia salvo neste navegador.');
+        }
+    });
+    document.getElementById('trailer-url').addEventListener('input', event => event.target.setCustomValidity(''));
+    const remove = document.getElementById('remove-trailer');
+    if (remove) remove.addEventListener('click', () => {
+        const saved = savedTrailers();
+        delete saved[film.id];
+        if (write('trailers', saved)) { detail(); notify('Link da prévia removido.'); }
+    });
+    const play = document.getElementById('play-trailer');
+    if (play) play.addEventListener('click', () => {
+        const id = youtubeId(savedTrailers()[film.id]);
+        if (!id) return;
+        const frame = document.createElement('iframe');
+        frame.src = 'https://www.youtube-nocookie.com/embed/' + id;
+        frame.title = 'Prévia de ' + film.title + ' no YouTube';
+        frame.allow = 'fullscreen; encrypted-media; picture-in-picture';
+        frame.allowFullscreen = true;
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        document.getElementById('trailer-player').replaceChildren(frame);
+        play.hidden = true;
+    });
+}
 function detail() {
     const film = FILMS.find(f=>f.id === new URLSearchParams(location.search).get('id'));
     if (!film) {
@@ -75,7 +135,8 @@ function detail() {
         return;
     }
     document.title = film.title + ' · Bollyflix';
-    main.innerHTML = `<div class="detail"><img src="img/${film.id}.svg" alt="Capa ilustrada de ${film.title}"><section><div class="page-kicker">CURADORIA BOLLYFLIX</div><h1>${film.title}</h1><div class="chips"><span>${film.year}</span><span>${film.genre}</span><span>${film.duration} minutos</span><span>Indicação: ${film.rating} anos</span></div><h2>Uma história para descobrir</h2><p>${film.description}</p><p class="muted">As indicações etárias são referenciais para este catálogo estudantil. Confira a classificação oficial antes de assistir.</p><div class="actions"><button class="btn" data-favorite="${film.id}">${list('favorites').includes(film.id) ? 'Remover da minha lista' : 'Adicionar à minha lista'}</button><a class="btn secondary" href="notas.html?filme=${film.id}">Escrever no diário</a></div><div class="alert" style="margin-top:28px">Este projeto apresenta capas e sinopses. A assinatura é uma simulação e não dá acesso à reprodução deste filme.</div></section></div><div class="section-head"><h2>Continue descobrindo</h2><a href="catalogo.html">Catálogo completo ›</a></div><div class="grid">${cards(FILMS.filter(f=>f.id!==film.id).slice(0,4))}</div>`;
+    main.innerHTML = `<div class="detail"><img src="img/${film.id}.svg" alt="Capa ilustrada de ${film.title}"><section><div class="page-kicker">CATÁLOGO BOLLYFLIX</div><h1>${film.title}</h1><div class="chips"><span>${film.year}</span><span>${film.genre}</span><span>${film.duration} minutos</span><span>Indicação: ${film.rating} anos</span></div><h2>Sinopse</h2><p>${film.description}</p><p class="muted">As indicações etárias são referenciais para este catálogo estudantil. Confira a classificação oficial antes de assistir.</p><div class="actions"><button class="btn" data-favorite="${film.id}">${list('favorites').includes(film.id) ? 'Remover da minha lista' : 'Adicionar à minha lista'}</button><a class="btn secondary" href="notas.html?filme=${film.id}">Escrever no diário</a></div><div class="alert" style="margin-top:28px">Este projeto apresenta capas e sinopses. A assinatura é uma simulação e não dá acesso à reprodução deste filme.</div></section></div>${trailerSection(film)}<div class="section-head"><h2>Outros filmes</h2><a href="catalogo.html">Catálogo completo ›</a></div><div class="grid">${cards(FILMS.filter(f=>f.id!==film.id).slice(0,4))}</div>`;
+    bindTrailer(film);
 }
 function favorites() {
     const films = FILMS.filter(f=>list('favorites').includes(f.id));
@@ -93,7 +154,7 @@ function plans() {
 function profile() {
     const profile = read('profile', null);
     const name = profile && typeof profile.name === 'string' ? profile.name : '';
-    main.innerHTML = heading('SEU ESPAÇO','Meu perfil','Seu nome e suas preferências são salvos apenas neste navegador. Não é necessário cadastrar senha.') + `<div class="two-col"><section class="panel"><h2>Como podemos chamar você?</h2><p id="saudacao">${name ? 'Bem-vindo de volta, '+esc(name)+'!' : 'Vamos começar uma nova história?'}</p><form id="profile-form" ${name?'hidden':''}><label for="name">Seu nome</label><input id="name" name="name" type="text" required minlength="2" maxlength="60" pattern=".*\\S.*" placeholder="Digite seu nome"><button class="btn" type="submit" style="margin-top:20px">Salvar nome</button></form>${name?'<button class="btn secondary" id="edit-profile">Alterar nome</button>':''}</section><section class="panel"><h2>Seu contador de descobertas</h2><p>Um exercício de persistência: registre quantas descobertas você fez.</p><p id="counter" style="font-size:42px" aria-live="polite">${Number(read('counter',0))||0}</p><div class="actions"><button class="btn" id="increment">Adicionar 1 descoberta</button><button class="btn secondary" id="reset-counter">Zerar contador</button></div></section></div><section class="panel"><h2>Controle dos dados</h2><p>Apaga perfil, favoritos, notas, contatos, tema, contador e assinatura simulada do Bollyflix neste navegador. Dados de outros sites são preservados.</p><button class="btn secondary" id="clear">Limpar dados do Bollyflix</button></section>`;
+    main.innerHTML = heading('SEU ESPAÇO','Meu perfil','Seu nome e suas preferências são salvos apenas neste navegador. Não é necessário cadastrar senha.') + `<div class="two-col"><section class="panel"><h2>Como podemos chamar você?</h2><p id="saudacao">${name ? 'Bem-vindo de volta, '+esc(name)+'!' : 'Vamos começar uma nova história?'}</p><form id="profile-form" ${name?'hidden':''}><label for="name">Seu nome</label><input id="name" name="name" type="text" required minlength="2" maxlength="60" pattern=".*\\S.*" placeholder="Digite seu nome"><button class="btn" type="submit" style="margin-top:20px">Salvar nome</button></form>${name?'<button class="btn secondary" id="edit-profile">Alterar nome</button>':''}</section><section class="panel"><h2>Seu contador de descobertas</h2><p>Um exercício de persistência: registre quantas descobertas você fez.</p><p id="counter" style="font-size:42px" aria-live="polite">${Number(read('counter',0))||0}</p><div class="actions"><button class="btn" id="increment">Adicionar 1 descoberta</button><button class="btn secondary" id="reset-counter">Zerar contador</button></div></section></div><section class="panel"><h2>Controle dos dados</h2><p>Apaga perfil, favoritos, links de trailers, notas, contatos, tema, contador e assinatura simulada do Bollyflix neste navegador. Dados de outros sites são preservados.</p><button class="btn secondary" id="clear">Limpar dados do Bollyflix</button></section>`;
     document.getElementById('profile-form').addEventListener('submit', e=>{
         e.preventDefault();const name = document.getElementById('name').value.trim();
         if(name.length<2) return notify('Digite um nome com pelo menos 2 caracteres.');
@@ -131,16 +192,16 @@ function contact() {
     });
 }
 function media() {
-    main.innerHTML=heading('PAUSA PARA SENTIR','Sala de mídia','Uma vinheta visual e um ambiente sonoro originais, produzidos para esta demonstração. Não são trailers nem trilhas dos filmes.')+`<div class="two-col"><section class="panel"><h2>Um convite à descoberta</h2><video controls preload="metadata" poster="img/rrr.svg" aria-label="Vinheta visual Bollyflix"><source src="video/vinheta.mp4" type="video/mp4">Seu navegador não suporta vídeo. <a href="video/vinheta.mp4">Baixar vinheta</a>.</video><p class="muted">Vinheta abstrata de 8 segundos, sem fala. A tela apresenta cores em movimento e o convite “Bollyflix — descubra novas histórias”.</p></section><section class="panel"><div class="page-kicker">DÊ PLAY NA ATMOSFERA</div><h2>Intervalo para imaginar</h2><p>Uma sequência instrumental de tons suaves para acompanhar sua próxima descoberta.</p><audio controls preload="metadata" aria-label="Áudio instrumental original"><source src="audio/intervalo.wav" type="audio/wav">Seu navegador não suporta áudio.</audio><p class="muted">Áudio sintetizado original de 8 segundos, sem voz. Nenhuma transcrição verbal é necessária.</p><a class="btn secondary" href="catalogo.html">Voltar às histórias</a></section></div>`;
+    main.innerHTML=heading('RECURSOS DO PROJETO','Sala de mídia','Uma vinheta visual e um ambiente sonoro originais, produzidos para esta demonstração. Não são trailers nem trilhas dos filmes.')+`<div class="two-col"><section class="panel"><h2>Um convite à descoberta</h2><video controls preload="metadata" poster="img/rrr.svg" aria-label="Vinheta visual Bollyflix"><source src="video/vinheta.mp4" type="video/mp4">Seu navegador não suporta vídeo. <a href="video/vinheta.mp4">Baixar vinheta</a>.</video><p class="muted">Vinheta abstrata de 8 segundos, sem fala. A tela apresenta cores em movimento e o convite “Bollyflix — descubra novas histórias”.</p></section><section class="panel"><div class="page-kicker">DÊ PLAY NA ATMOSFERA</div><h2>Intervalo para imaginar</h2><p>Uma sequência instrumental de tons suaves para acompanhar sua próxima descoberta.</p><audio controls preload="metadata" aria-label="Áudio instrumental original"><source src="audio/intervalo.wav" type="audio/wav">Seu navegador não suporta áudio.</audio><p class="muted">Áudio sintetizado original de 8 segundos, sem voz. Nenhuma transcrição verbal é necessária.</p><a class="btn secondary" href="catalogo.html">Voltar às histórias</a></section></div><section class="panel"><h2>Prévias dos filmes no YouTube</h2><p>Abra os detalhes de um filme para buscar e salvar o link do trailer. O YouTube precisa de internet; o áudio e a vinheta acima são locais.</p><ul>${FILMS.map(f=>`<li><a href="filme.html?id=${f.id}#previa">${f.title} (${f.year}) — prévia</a></li>`).join('')}</ul></section>`;
 }
 function about() {
     main.innerHTML=heading('UM PROJETO, MUITOS OLHARES','O cinema aproxima.','O Bollyflix é um catálogo estudantil dedicado à descoberta do cinema indiano, desenvolvido para a disciplina de Desenvolvimento Front-End para Web.')+`<div class="two-col"><section class="panel"><h2>Por que Bollyflix?</h2><p>Drama, romance, comédia e aventura podem apresentar outras culturas e despertar novas perguntas. Nosso objetivo é ajudar você a encontrar sua próxima história.</p><p>O nome faz referência a Bollywood, mas a seleção também inclui cinema indiano produzido em outras línguas, como RRR, originalmente em télugo.</p><a class="button" href="catalogo.html">Conheça a seleção ›</a></section><section class="panel"><h2>Feito para aprender</h2><p>HTML semântico, CSS Grid, Flexbox e JavaScript constroem uma experiência responsiva que funciona sem conexão.</p><p>Esta página e a página de privacidade usam apenas HTML, CSS e JavaScript puros. As demais também utilizam o CSS local do Bootstrap.</p><a href="doc/Documentacao-Bollyflix.docx">Baixar documentação acadêmica em Word ›</a></section></div><section class="band"><div><h2>Curadoria com transparência</h2><p>Os filmes são reais; as sinopses são resumos autorais e as capas são ilustrações abstratas do projeto. Não temos vínculo com estúdios ou distribuidores.</p></div></section>`;
 }
 function privacy() {
-    main.innerHTML=heading('TRANSPARÊNCIA EM PRIMEIRO LUGAR','Seus dados ficam com você.','Uma explicação simples sobre o armazenamento desta demonstração.')+`<article class="panel narrow"><h2>O que é salvo?</h2><p>Nome de perfil, favoritos, tema, contador, notas, mensagens do formulário e plano fictício são armazenados no localStorage do navegador usando chaves com o prefixo bollyflix.</p><h2>Por quanto tempo?</h2><p>Até você apagar os dados do site ou limpar o navegador. Não existe sincronização entre dispositivos. Em navegação privada, as informações podem ser removidas ao fechar a sessão.</p><h2>Quais são os limites?</h2><p>Esta aplicação não oferece autenticação, proteção de conta nem pagamento. Não cadastre informações confidenciais. Quem usa o mesmo perfil do navegador pode acessar os registros.</p><h2>Como apagar?</h2><p>Use “Limpar dados do Bollyflix” no perfil. Essa ação remove apenas as chaves do projeto e preserva outros dados da mesma origem.</p><h2>Funcionamento offline</h2><p>Recursos visuais, Bootstrap e mídia são locais. Links externos exigem internet. O comportamento de localStorage em arquivos file:// varia por navegador; para persistência consistente entre páginas, utilize o servidor local descrito no README.</p><a class="button" href="perfil.html">Gerenciar meus dados</a></article>`;
+    main.innerHTML=heading('TRANSPARÊNCIA EM PRIMEIRO LUGAR','Seus dados ficam com você.','Uma explicação simples sobre o armazenamento desta demonstração.')+`<article class="panel narrow"><h2>O que é salvo?</h2><p>Nome de perfil, favoritos, links de trailers, tema, contador, notas, mensagens do formulário e plano fictício são armazenados no localStorage do navegador usando chaves com o prefixo bollyflix.</p><h2>Por quanto tempo?</h2><p>Até você apagar os dados do site ou limpar o navegador. Não existe sincronização entre dispositivos. Em navegação privada, as informações podem ser removidas ao fechar a sessão.</p><h2>Quais são os limites?</h2><p>Esta aplicação não oferece autenticação, proteção de conta nem pagamento. Não cadastre informações confidenciais. Quem usa o mesmo perfil do navegador pode acessar os registros.</p><h2>Como apagar?</h2><p>Use “Limpar dados do Bollyflix” no perfil. Essa ação remove apenas as chaves do projeto e preserva outros dados da mesma origem.</p><h2>Prévias externas</h2><p>O player do YouTube só é carregado quando você clica em carregar prévia. Nesse momento, seu navegador se conecta ao serviço externo e passa a seguir as políticas do YouTube. O vídeo não é salvo no computador; apenas seu link fica no armazenamento local.</p><h2>Funcionamento offline</h2><p>Recursos visuais, Bootstrap e mídia são locais. Links externos exigem internet. O comportamento de localStorage em arquivos file:// varia por navegador; para persistência consistente entre páginas, utilize o servidor local descrito no README.</p><a class="button" href="perfil.html">Gerenciar meus dados</a></article>`;
 }
 function help() {
-    const faqs=[['Como salvo um filme?','No catálogo, use o botão + ao lado do título. O coração indica que o filme já está na sua lista. Clique novamente para removê-lo.'],['A assinatura tem cobrança?','Não. Os planos são uma demonstração acadêmica sem transação financeira, streaming ou vantagens reais.'],['Posso assistir aos filmes aqui?','Não. Este projeto disponibiliza capas e descrições. A sala de mídia contém apenas materiais originais de demonstração.'],['Por que meus dados não aparecem em outro dispositivo?','Os dados ficam no localStorage do navegador atual. Não há servidor de contas ou sincronização.'],['Funciona sem internet?','Sim. Abra index.html após extrair a pasta inteira. Para persistência entre páginas consistente, recomenda-se um servidor HTTP local. Links externos precisam de conexão.'],['Como apago minhas informações?','Acesse Meu perfil e escolha Limpar dados do Bollyflix. Você também pode excluir notas individualmente no diário.']];
+    const faqs=[['Como salvo um filme?','No catálogo, use o botão + ao lado do título. O coração indica que o filme já está na sua lista. Clique novamente para removê-lo.'],['A assinatura tem cobrança?','Não. Os planos são uma demonstração acadêmica sem transação financeira, streaming ou vantagens reais.'],['Posso assistir aos filmes aqui?','Não. Este projeto disponibiliza capas e descrições. A sala de mídia oferece materiais locais e acesso às prévias do YouTube. Os trailers externos precisam de internet.'],['Por que meus dados não aparecem em outro dispositivo?','Os dados ficam no localStorage do navegador atual. Não há servidor de contas ou sincronização.'],['Funciona sem internet?','Sim. Abra index.html após extrair a pasta inteira. Para persistência entre páginas consistente, recomenda-se um servidor HTTP local. Links externos precisam de conexão.'],['Como apago minhas informações?','Acesse Meu perfil e escolha Limpar dados do Bollyflix. Você também pode excluir notas individualmente no diário.']];
     main.innerHTML=heading('PODEMOS AJUDAR?','Perguntas frequentes','Tudo o que você precisa para explorar o projeto.')+`<section class="narrow">${faqs.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</section><div class="band"><div><h2>Ficou com uma ideia?</h2><p>Registre sua sugestão no formulário de demonstração.</p></div><a class="btn" href="contato.html">Abrir contato</a></div>`;
 }
 shell();

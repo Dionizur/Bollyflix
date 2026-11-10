@@ -33,3 +33,9 @@ A dupla deve revisar, compreender e adaptar o trabalho, informar o uso de ferram
 ## Validação
 
 Com o servidor ativo, execute `node tests/browser.cjs` em uma máquina com Playwright e Chromium instalados. O teste usa somente dados fictícios e um contexto isolado. Os testes não são dependências do site.
+
+## Revisão: visual acadêmico e prévias
+
+Visual simplificado com Arial, fundo claro padrão, cartões básicos e tema escuro opcional. Foram mantidas as 12 páginas (o mínimo da atividade é 10), Bootstrap local e duas páginas sem biblioteca.
+
+Nos detalhes dos filmes, há busca de trailers no YouTube e salvamento local de links. A incorporação é carregada somente ao clicar. A consulta ao YouTube está bloqueada pela rede deste ambiente; não há trailers específicos verificados ou baixados nesta versão. Consulte `doc/PREVIAS.md`.

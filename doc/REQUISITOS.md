@@ -20,8 +20,8 @@
 | Bootstrap | CSS local: container, navbar, btn, card, alert, form-control, form-select |
 | Eventos e DOM | click, input, submit; renderização, texto e atributos |
 | Estruturas JS | sequência, if, map/filter/forEach, arrays/objetos |
-| LocalStorage | perfil, favoritos, notas, tema, contador, assinatura e mensagens |
-| GitHub público | pendente: publicação pela dupla |
+| LocalStorage | perfil, favoritos, notas, tema, contador, assinatura, mensagens e links de prévias |
+| GitHub público | repositório Dionizur/Bollyflix, branch main; envio inicial confirmado; visibilidade pública deve ser conferida na conta |
 | ZIP e Word | pacote de entrega e doc/Documentacao-Bollyflix.docx |
 | Saudação persistente | perfil, ocultação do formulário ao salvar |
 | Contador | perfil: adicionar e zerar |
@@ -29,3 +29,7 @@
 | Array JSON e notas | diário, tabela e exclusão individual |
 
 A limpeza é limitada às chaves Bollyflix para preservar outros dados do navegador. O projeto não chama localStorage.clear() por esse motivo. Autenticação, pagamento real e streaming estão fora do escopo.
+
+## Revisão visual
+
+12 páginas preservadas. Visual simples com Arial, azul/cinza, fundo claro inicial e tema escuro opcional. Grid e Flexbox, formulário, tabela 4 × 4, controles nativos de áudio/vídeo e Bootstrap local permanecem. O recurso adicional de YouTube não substitui a mídia local exigida. Veja PREVIAS.md para o bloqueio da busca e a distinção entre links de busca e vídeos verificados.

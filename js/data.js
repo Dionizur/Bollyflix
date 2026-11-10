@@ -6,7 +6,8 @@ const FILMS = [
     "genre": "Drama",
     "duration": 161,
     "rating": "12",
-    "description": "Uma família, um sonho e a determinação de duas irmãs que encontram na luta uma maneira de escrever o próprio futuro."
+    "description": "Uma família, um sonho e a determinação de duas irmãs que encontram na luta uma maneira de escrever o próprio futuro.",
+    "trailerSearch": "https://www.youtube.com/results?search_query=Dangal%202016%20official%20trailer"
   },
   {
     "id": "rrr",
@@ -15,7 +16,8 @@ const FILMS = [
     "genre": "Ação",
     "duration": 187,
     "rating": "16",
-    "description": "Dois homens em lados opostos de um conflito constroem uma amizade capaz de desafiar um império."
+    "description": "Dois homens em lados opostos de um conflito constroem uma amizade capaz de desafiar um império.",
+    "trailerSearch": "https://www.youtube.com/results?search_query=RRR%202022%20official%20trailer"
   },
   {
     "id": "queen",
@@ -24,7 +26,8 @@ const FILMS = [
     "genre": "Comédia",
     "duration": 146,
     "rating": "12",
-    "description": "Depois de uma mudança inesperada nos planos do casamento, Rani parte sozinha para uma viagem de descobertas."
+    "description": "Depois de uma mudança inesperada nos planos do casamento, Rani parte sozinha para uma viagem de descobertas.",
+    "trailerSearch": "https://www.youtube.com/results?search_query=Queen%202014%20official%20trailer"
   },
   {
     "id": "lagaan",
@@ -33,7 +36,8 @@ const FILMS = [
     "genre": "Drama",
     "duration": 224,
     "rating": "10",
-    "description": "Em uma aldeia sob domínio britânico, uma partida de críquete se transforma em uma aposta pela dignidade."
+    "description": "Em uma aldeia sob domínio britânico, uma partida de críquete se transforma em uma aposta pela dignidade.",
+    "trailerSearch": "https://www.youtube.com/results?search_query=Lagaan%202001%20official%20trailer"
   },
   {
     "id": "dil-se",
@@ -42,7 +46,8 @@ const FILMS = [
     "genre": "Romance",
     "duration": 163,
     "rating": "14",
-    "description": "Um radialista se apaixona por uma mulher misteriosa em uma história atravessada por conflitos e escolhas difíceis."
+    "description": "Um radialista se apaixona por uma mulher misteriosa em uma história atravessada por conflitos e escolhas difíceis.",
+    "trailerSearch": "https://www.youtube.com/results?search_query=Dil%20Se%201998%20official%20trailer"
   },
   {
     "id": "piku",
@@ -51,7 +56,8 @@ const FILMS = [
     "genre": "Comédia",
     "duration": 123,
     "rating": "12",
-    "description": "Uma arquiteta e seu pai embarcam em uma viagem que revela os pequenos absurdos e afetos da vida em família."
+    "description": "Uma arquiteta e seu pai embarcam em uma viagem que revela os pequenos absurdos e afetos da vida em família.",
+    "trailerSearch": "https://www.youtube.com/results?search_query=Piku%202015%20official%20trailer"
   },
   {
     "id": "swades",
@@ -60,7 +66,8 @@ const FILMS = [
     "genre": "Drama",
     "duration": 189,
     "rating": "10",
-    "description": "Ao retornar à Índia, um cientista reencontra suas raízes e começa a repensar o significado de pertencer."
+    "description": "Ao retornar à Índia, um cientista reencontra suas raízes e começa a repensar o significado de pertencer.",
+    "trailerSearch": "https://www.youtube.com/results?search_query=Swades%202004%20official%20trailer"
   },
   {
     "id": "kahaani",
@@ -69,6 +76,7 @@ const FILMS = [
     "genre": "Suspense",
     "duration": 122,
     "rating": "16",
-    "description": "Uma mulher chega a Calcutá procurando o marido desaparecido e encontra uma cidade cheia de pistas e segredos."
+    "description": "Uma mulher chega a Calcutá procurando o marido desaparecido e encontra uma cidade cheia de pistas e segredos.",
+    "trailerSearch": "https://www.youtube.com/results?search_query=Kahaani%202012%20official%20trailer"
   }
 ];
